@@ -24,6 +24,7 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'customers', views.CustomerViewSet)
 router.register(r'invoices', views.InvoiceViewSet)
+router.register(r'invoice-items', views.InvoiceModifierViewSet)
 router.register(r'modifiers', views.ModifierViewSet)
 
 urlpatterns = [

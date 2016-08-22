@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="pos-app" ng-controller="pos-controller">
+<head>
+  <title>Laundromat Point-Of-Sale</title>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+  <link rel="stylesheet" href="css/pos.css">
+</head>
+
+<body>
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+  <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-resource.min.js"></script>
+  <script src="js/pos.js"></script>
+  <script src="app.js"></script>
+
+  <div data-role="page" id="customer-view">
+    <div data-role="header">
+      <h1>Customers</h1>
+      <a href="#customer-create" id="add-customer" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-left ui-icon-plus ui-btn-b">Add</a>
+    </div>
+    <div data-role="content" class="ui-content">
+      <ul id="customer-list" data-role="listview" data-inset="true" data-filter="true">
+        <li ng-repeat="c in customers">
+          <a href="#customer-invoices-view" ng-click="viewCustomer('{{ c.id }}');">
+            {{ c.identifier }}
+          </a>    
+          </li>
+      </ul>
+    </div>
+  </div>
+
+  <div data-role="page" id="customer-create">
+    <div data-role="header">
+      <h1>Customers</h1>
+      <a href="#customer-view" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-left ui-icon-bullets ui-btn-b">View All</a>
+    </div>
+    <div data-role="content" class="ui-content">
+    <form id="form-customer">
+      <label for="first_name">First name:</label>
+      <input name="first_name" type="text">
+      <label for="last_name">Last name:</label>
+      <input name="last_name" type="text">
+      <label for="email">Email:</label>
+      <input name="email" type="text">
+      <input id="create-customer" type="submit" value="Create"/>
+    </form>
+    </div>
+  </div>
+
+  <div data-role="page" id="customer-invoices-view">
+    <div data-role="header">
+      <h1>Invoices for {{ customer.identifier }}</h1>
+      <a href="#invoice-view" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-left ui-icon-bullets ui-btn-b">View All</a>
+    </div>
+    <div data-role="main" class="ui-content">
+      <ul id="customer-invoice-list" data-role="listview" data-inset="true" data-filter="true">
+      <li ng-repeat="i in invoices">
+        {{ i.timestamp }}
+      </li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>
